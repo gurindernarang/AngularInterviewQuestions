@@ -7,7 +7,7 @@ Angular Interview Questions with examples
    - AngularJS based javascript uses terms of scope and controller while Angular uses hierarchy of components. Angular is component based(here component is directive with a template), while AngularJS uses directives.
    - AngularJS is MVC based framework while Angular is service/controller based.
    - AngularJS does not provide mobile support while Angular supports mobile.
-   - In AngularJS {{}} are used to bind data between view and model. Special methods, ng-bind can also be used to do the same where as in Angular () and [] attributes are used to bind data between view and model.
+   - In AngularJS {{}} and special methods(ng-bind) are used to bind data between view and mode, where as in Angular () and [] attributes are used to bind data between view and model.
    - Dependency Injection is not used in AngularJS where as Hierarchical DI system is used in Angular.
     
     Reference: https://stackify.com/angular-vs-angularjs-differences-between-angular-and-angularjs/
