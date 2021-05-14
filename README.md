@@ -55,20 +55,17 @@ There are basically 8 building blocks of Angular. These are:
 
 **4. What is difference b/w ng-content, ng-container and ng-template?**
 
-ng-content : Suppose we have an html in which we call a component/directive. Here below is our html file content and "demostrate" is our component's selector
+ng-content : Suppose we have an html file in which we call a component/directive. Below is our html file content and "demostrate" is our component's selector
 
 ```html
-<p>Start editing to see some magic happen :)</p>
+<p>ng-content demonstration</p>
 <demonstrate></demonstrate>
 ```
 
 so what angular do is find this component and replaces the view attached to the component with "demostrate" tag. Suppose following is the content of "demonstrate" tag.
 
 ```html
-<h1>
-  Have patience!!!
-  <h1></h1>
-</h1>
+<h1>Have patience!!!</h1>
 ```
 
 Now what is we put in some content inside **demonstrate** tag??
