@@ -55,7 +55,7 @@ There are basically 8 building blocks of Angular. These are:
 
 **4. What is difference b/w ng-content, ng-container and ng-template?**
 
-ng-content : Suppose we have an html file in which we call a component/directive. Below is our html file content and "demostrate" is our component's selector
+**ng-content:** Suppose we have an html file in which we call a component/directive. Below is our html file content and "demostrate" is our component's selector
 
 ```html
 <p>ng-content demonstration</p>
@@ -71,7 +71,44 @@ so what angular do is find this component and replaces the view attached to the 
 Now what is we put in some content inside **demonstrate** tag??
 
 ```html
+<p>ng-content demonstration</p>
 <demonstrate>Some Content over here</demonstrate>
 ```
 
-Nothing happens, it still do the same. What if we want to show this content? So this is where this ng-content directive comes in picture.
+Nothing happens, it still do the same. What if we want to show this content? So this is where the ng-content directive comes in picture. What we need to do is, just add "ng-content" inside the component template and it will find the content inside the directive tag and add it to that template at that particular place where we added "ng-content" tag.
+
+```html
+<h1>Have patience!!!</h1>
+<ng-content></ng-content>
+```
+
+So here ng-content tag gets replace with "Some Content over here".
+
+In AngularJS we have "ng-transclude" for the same.
+
+**ng-container:** What if we need to add ngIf and ngFor both on the same div??
+
+```
+<div class="user" *ngIf="users" *ngFor="let user of users">
+</div>
+```
+
+This will return an error as its not possible to apply two structural directives to the same element and how we can resolve this error is, by added an extra div. So our code looks like this.
+
+```
+<div *ngIf="users">
+  <div class="user" *ngFor="let user of users">
+  </div>
+</div>
+```
+
+Now what if we want to remove the extra div? So what we can do here is we can use ng-container here instead of div.
+
+```
+<ng-container *ngIf="users">
+  <div class="user" *ngFor="let user of users">
+  </div>
+</ng-container>
+```
+
+**ng-template:**
