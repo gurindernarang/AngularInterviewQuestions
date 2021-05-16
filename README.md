@@ -86,6 +86,8 @@ So here ng-content tag gets replace with "Some Content over here".
 
 In AngularJS we have "ng-transclude" for the same.
 
+check this link for a POC of ng-content https://stackblitz.com/edit/angular-ivy-1pgb9z
+
 **ng-container:** What if we need to add ngIf and ngFor both on the same div??
 
 ```
@@ -93,7 +95,7 @@ In AngularJS we have "ng-transclude" for the same.
 </div>
 ```
 
-This will return an error as its not possible to apply two structural directives to the same element and how we can resolve this error is, by added an extra div. So our code looks like this.
+This will return an error as it's not possible to apply two structural directives to the same element and how we can resolve this error is, by added an extra div. So our code looks like this.
 
 ```
 <div *ngIf="users">
@@ -102,7 +104,7 @@ This will return an error as its not possible to apply two structural directives
 </div>
 ```
 
-Now what if we want to remove the extra div? So what we can do here is we can use ng-container here instead of div.
+Now what if we want to remove the extra div? So what we can do here, we can use ng-container instead of extra div.
 
 ```
 <ng-container *ngIf="users">
@@ -111,4 +113,50 @@ Now what if we want to remove the extra div? So what we can do here is we can us
 </ng-container>
 ```
 
-**ng-template:**
+**ng-template:** Like the name indicates, the ng-template directive represents an Angular template: this means that the content of this tag will contain part of a template, that can be then be composed together with other templates in order to form the final component template. Benefits of ng-template is that it doesn't add content to the DOM.
+
+Using ng-template we can implement if-else in a clean way. Suppose we have a list of student and we need to display that list in a tabular form and if the list is epmty we need to show a message. So we can do this using ng-template. Here is an example
+
+```
+<ul>
+  <ng-container class="student" *ngIf="student" else NoRecordFound>
+    <li *ngFor="let student of students">
+      {{student.name}}
+    </li>
+  <ng-contianer>
+</ul>
+<ng-template #NoRecordFound>
+  <h2>There is no record found!!!</h2>
+</ng-template>
+```
+
+Reference:
+
+https://blog.angular-university.io/angular-ng-template-ng-container-ngtemplateoutlet/
+
+**5. How to improve performace of "ngForOf" or "\*ngFor" loop?**
+
+The ngForOf directive is generally used in the shorthand form *ngFor.
+Here is how we can use ngForOf instead of *ngFor
+
+```
+<li *ngFor="let item of items; index as i; trackBy: trackByFn">...</li>
+```
+
+we can also write above statement as
+
+```
+<ng-template ngFor let-item [ngForOf]="items" let-i="index" [ngForTrackBy]="trackByFn">
+  <li>...</li>
+</ng-template>
+```
+
+DOM manipulation is a very expensive operation, trackBy gives us the power to render the DOM/component partially depending on the change. A trackBy attribute allows us to define function that returns a unique identifier for each iterable element. This helps bypass unnecessary and expensive comparisons when the data list changes. Now when you change the collection, Angular can track which items have been added or removed according to the unique identifier and create or destroy only the items that changed.
+
+Reference:
+
+https://angular.io/api/common/NgForOf#description
+
+https://www.youtube.com/watch?v=rz5K4oPIjME
+
+**6. How are types of directive in angular?**
